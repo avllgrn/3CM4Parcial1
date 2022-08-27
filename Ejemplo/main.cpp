@@ -1,58 +1,71 @@
 #include <iostream>
 using namespace std;
 
+class Nodo{
+private:
+    int dato;
+    Nodo* sig;
+public:
+    Nodo(void);
+    Nodo(int d, Nodo* s);
+    void muestraDatos(void);
+    void muestraDato(void);
+    void pideDatos(void);
+    int dameDato(void);
+    void modificaDato(int d);
+    Nodo* dameSig(void);
+    void modificaSig(Nodo* s);
+};
+Nodo::Nodo(void){
+    dato = 0;
+    sig = NULL;
+}
+Nodo::Nodo(int d, Nodo* s){
+    dato = d;
+    sig = s;
+}
+void Nodo::muestraDatos(void){
+    cout << "|" << dato << "|";
+    if(sig == NULL)
+        cout<< "NULL|";
+    else
+        cout<< " -> " << sig << "| ";
+}
+void Nodo::muestraDato(void){
+    cout << "|" << dato << "|";
+    if(sig != NULL)
+        cout<< " -> ";
+}
+void Nodo::pideDatos(void){
+    cout<<"Dame mi dato: ";cin>>dato;
+}
+
+int Nodo::dameDato(void){
+    return dato;
+}
+void Nodo::modificaDato(int d){
+    dato = d;
+}
+Nodo* Nodo::dameSig(void){
+    return sig;
+}
+void Nodo::modificaSig(Nodo* s){
+    sig = s;
+}
+
 int main(void){
-    int a;//Declaracion de una variable
-    int* ptr1;//Declaracion de un apuntador a un espacio que guarda un int
+    Nodo A;     //Instacia de objeto tipo Nodo
+    Nodo* ptr;  //Declaracion de un apuntador a un objeto tipo Nodo
 
-    a=5;
-    ptr1=&a;
+    ptr = &A;
 
-    cout << "a\t= " << a << endl;//Contenido en a
-    cout << "&a\t= " << &a << endl;//Direccion de a
-    cout << "ptr1\t= " << ptr1 << endl;//Contenido en ptr1
-    cout << "&ptr1\t= " << &ptr1 << endl;//Direccion de ptr1
-    cout << "*ptr1\t= " << *ptr1 <<endl << endl;//ptr1, tienes una direccion,
-                                              //ve a ella y usa el dato contenido ahi
-
-    float b;//Declaracion de una variable
-    float* ptr2;//Declaracion de un apuntador a un espacio que guarda un float
-
-    b=6.7;
-    ptr2=&b;
-
-    cout << "b\t= " << b << endl;//Contenido en a
-    cout << "&b\t= " << &b << endl;//Direccion de a
-    cout << "ptr2\t= " << ptr2 << endl;//Contenido en ptr2
-    cout << "&ptr2\t= " << &ptr2 << endl;//Direccion de ptr2
-    cout << "*ptr2\t= " << *ptr2 <<endl << endl;//ptr2, tienes una direccion,
-                                                //ve a ella y usa el dato contenido ahi
-
-    long c;//Declaracion de una variable
-    long* ptr3;//Declaracion de un apuntador a un espacio que guarda un long
-
-    c=8;
-    ptr3=&c;
-
-    cout << "c\t= " << c << endl;//Contenido en a
-    cout << "&c\t= " << &c << endl;//Direccion de a
-    cout << "ptr3\t= " << ptr3 << endl;//Contenido en ptr3
-    cout << "&ptr3\t= " << &ptr3 << endl;//Direccion de ptr3
-    cout << "*ptr3\t= " << *ptr3 <<endl << endl;//ptr3, tienes una direccion,
-                                                //ve a ella y usa el dato contenido ahi
-
-    double d;//Declaracion de una variable
-    double* ptr4;//Declaracion de un apuntador a un espacio que guarda un double
-
-    d=9.87;
-    ptr4=&d;
-
-    cout << "d\t= " << d << endl;//Contenido en a
-    cout << "&d\t= " << &d << endl;//Direccion de a
-    cout << "ptr4\t= " << ptr4 << endl;//Contenido en ptr4
-    cout << "&ptr4\t= " << &ptr4 << endl;//Direccion de ptr4
-    cout << "*ptr4\t= " << *ptr4 <<endl << endl;//ptr4, tienes una direccion,
-                                                //ve a ella y usa el dato contenido ahi
+    A.muestraDatos();                   //Invocacion de un metodo del objeto A
+    cout << endl;
+    cout << "&A\t= " << &A << endl;     //Direccion del objeto tipo Nodo
+    cout << "ptr\t= " << ptr << endl;   //Direccion contenida en el apuntador
+    cout << "&ptr\t= " << &ptr << endl; //Direccion del apuntador
+    ptr->muestraDatos();                //Invocacion de un metodo del objeto A,
+                                        //a traves del apuntador
 
     return 0;
 }
