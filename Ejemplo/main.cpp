@@ -54,18 +54,17 @@ void Nodo::modificaSig(Nodo* s){
 }
 
 int main(void){
-    Nodo A;     //Instacia de objeto tipo Nodo
     Nodo* ptr;  //Declaracion de un apuntador a un objeto tipo Nodo
 
-    ptr = &A;
+    ptr = new Nodo();       //Instacia de objeto tipo Nodo,
+                            //dinamicamente creado
 
-    A.muestraDatos();                   //Invocacion de un metodo del objeto A
-    cout << endl;
-    cout << "&A\t= " << &A << endl;     //Direccion del objeto tipo Nodo
     cout << "ptr\t= " << ptr << endl;   //Direccion contenida en el apuntador
     cout << "&ptr\t= " << &ptr << endl; //Direccion del apuntador
-    ptr->muestraDatos();                //Invocacion de un metodo del objeto A,
-                                        //a traves del apuntador
+    ptr->muestraDatos();                //Invocacion de un metodo del objeto dinamicamente instanciado,
+                                        //usando el apuntador
+
+    delete ptr; //Liberacion de memoria del objeto dinamicamente instanciado
 
     return 0;
 }
