@@ -4,67 +4,95 @@ using namespace std;
 class Nodo{
 private:
     int dato;
-    Nodo* sig;
+    Nodo* inferior;
 public:
     Nodo(void);
-    Nodo(int d, Nodo* s);
+    Nodo(int d, Nodo* i);
     void muestraDatos(void);
     void muestraDato(void);
     void pideDatos(void);
-    int dameDato(void);
+    int retornaDato(void);
     void modificaDato(int d);
-    Nodo* dameSig(void);
-    void modificaSig(Nodo* s);
+    Nodo* retornaInferior(void);
+    void modificaInferior(Nodo* i);
 };
 Nodo::Nodo(void){
     dato = 0;
-    sig = NULL;
+    inferior = NULL;
 }
-Nodo::Nodo(int d, Nodo* s){
+Nodo::Nodo(int d, Nodo* i){
     dato = d;
-    sig = s;
+    inferior = i;
 }
 void Nodo::muestraDatos(void){
     cout << "|" << dato << "|";
-    if(sig == NULL)
+    if(inferior == NULL)
         cout<< "NULL|";
     else
-        cout<< " -> " << sig << "| ";
+        cout<< " -> " << inferior << "| ";
 }
 void Nodo::muestraDato(void){
     cout << "|" << dato << "|";
-    if(sig != NULL)
+    if(inferior != NULL)
         cout<< " -> ";
 }
 void Nodo::pideDatos(void){
     cout<<"Dame mi dato: ";cin>>dato;
 }
-
-int Nodo::dameDato(void){
+int Nodo::retornaDato(void){
     return dato;
 }
 void Nodo::modificaDato(int d){
     dato = d;
 }
-Nodo* Nodo::dameSig(void){
-    return sig;
+Nodo* Nodo::retornaInferior(void){
+    return inferior;
 }
-void Nodo::modificaSig(Nodo* s){
-    sig = s;
+void Nodo::modificaInferior(Nodo* i){
+    inferior = i;
 }
 
 int main(void){
-    Nodo* ptr;  //Declaracion de un apuntador a un objeto tipo Nodo
+    Nodo* tope;
 
-    ptr = new Nodo();       //Instacia de objeto tipo Nodo,
-                            //dinamicamente creado
+    tope = NULL;//Pila vacia
 
-    cout << "ptr\t= " << ptr << endl;   //Direccion contenida en el apuntador
-    cout << "&ptr\t= " << &ptr << endl; //Direccion del apuntador
-    ptr->muestraDatos();                //Invocacion de un metodo del objeto dinamicamente instanciado,
-                                        //usando el apuntador
+    tope = new Nodo(5, tope);    //Push a la pila, entra 5 primero
+    tope = new Nodo(3, tope);    //Push a la pila, entra 3
+    tope = new Nodo(7, tope);    //Push a la pila, entra 7
+    tope = new Nodo(-4, tope);   //Push a la pila, entra -4 al final
 
-    delete ptr; //Liberacion de memoria del objeto dinamicamente instanciado
+
+    Nodo* aux;
+    int d;
+
+    //Pop a la pila, sale -4 primero (ultimo en entrar)
+    d = tope->retornaDato();
+    aux = tope;
+    tope = tope->retornaInferior();
+    delete aux;
+    cout << d << endl;
+
+    //Pop a la pila, sale 7
+    d = tope->retornaDato();
+    aux = tope;
+    tope = tope->retornaInferior();
+    delete aux;
+    cout << d << endl;
+
+    //Pop a la pila, sale 3
+    d = tope->retornaDato();
+    aux = tope;
+    tope = tope->retornaInferior();
+    delete aux;
+    cout << d << endl;
+
+    //Pop a la pila, sale 5 al final  (primero en entrar)
+    d = tope->retornaDato();
+    aux = tope;
+    tope = tope->retornaInferior();
+    delete aux;
+    cout << d << endl;
 
     return 0;
 }
