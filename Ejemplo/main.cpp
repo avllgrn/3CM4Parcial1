@@ -1,99 +1,27 @@
 #include <iostream>
-#include <string>
+#include <stdlib.h>
 using namespace std;
-
-class Libro{
-private:
-    string Titulo;
-    string Autor;
-    string Editorial;
-public:
-    Libro(void);
-    Libro(string T, string A, string E);
-    ~Libro(void);
-    void pideDatos(void);
-    void muestraDatos(void);
-    string retornaTitulo(void);
-    void modificaTitulo(string T);
-    string retornaAutor(void);
-    void modificaAutor(string A);
-    string retornaEditorial(void);
-    void modificaEditorial(string E);
-};
-istream& operator>>(istream& Izquierdo, Libro& Derecho);
-ostream& operator<<(ostream& Izquierdo, Libro Derecho);
-
-Libro::Libro(void){
-}
-Libro::Libro(string T, string A, string E){
-    Titulo = T;
-    Autor = A;
-    Editorial = E;
-}
-Libro::~Libro(void){
-    //cout << "Libro destruido..." << endl;
-}
-void Libro::pideDatos(void){
-    cout << "Ingresa Titulo ";
-    getline(cin,Titulo);
-    cout << "Ingresa Autor ";
-    getline(cin,Autor);
-    cout << "Ingresa Editorial ";
-    getline(cin,Editorial);
-}
-void Libro::muestraDatos(void){
-    cout << "Titulo:\t   " << Titulo << endl
-         << "Autor:\t   " << Autor << endl
-         << "Editorial: " << Editorial << endl;
-}
-string Libro::retornaTitulo(void){
-    return Titulo;
-}
-void Libro::modificaTitulo(string T){
-    Titulo = T;
-}
-string Libro::retornaAutor(void){
-    return Autor;
-}
-void Libro::modificaAutor(string A){
-    Autor = A;
-}
-string Libro::retornaEditorial(void){
-    return Editorial;
-}
-void Libro::modificaEditorial(string E){
-    Editorial = E;
-}
-
-istream& operator>>(istream& Izquierdo, Libro& Derecho){
-    Derecho.pideDatos();
-    return Izquierdo;
-}
-ostream& operator<<(ostream& Izquierdo, Libro Derecho){
-    Derecho.muestraDatos();
-    return Izquierdo;
-}
 
 class Nodo{
 private:
-    Libro dato;
+    int dato;
     Nodo* inferior;
 public:
     Nodo(void);
-    Nodo(Libro d, Nodo* i);
+    Nodo(int d, Nodo* i);
     void muestraDatos(void);
     void muestraDato(void);
     void pideDatos(void);
-    Libro retornaDato(void);
-    void modificaDato(Libro d);
+    int retornaDato(void);
+    void modificaDato(int d);
     Nodo* retornaInferior(void);
     void modificaInferior(Nodo* i);
 };
-
 Nodo::Nodo(void){
+    dato = 0;
     inferior = NULL;
 }
-Nodo::Nodo(Libro d, Nodo* i){
+Nodo::Nodo(int d, Nodo* i){
     dato = d;
     inferior = i;
 }
@@ -112,10 +40,10 @@ void Nodo::muestraDato(void){
 void Nodo::pideDatos(void){
     cout<<"Dame mi dato: ";cin>>dato;
 }
-Libro Nodo::retornaDato(void){
+int Nodo::retornaDato(void){
     return dato;
 }
-void Nodo::modificaDato(Libro d){
+void Nodo::modificaDato(int d){
     dato = d;
 }
 Nodo* Nodo::retornaInferior(void){
@@ -125,51 +53,84 @@ void Nodo::modificaInferior(Nodo* i){
     inferior = i;
 }
 
-int main(void){
+class Pila{
+private:
     Nodo* tope;
-    Libro L1("El aleph","Jorge Luis Borges","Alianza");
-    Libro L2("Las desventuras del joven Werther","Johann Wolfgang von Goethe","Catedra");
-    Libro L3("La experiencia literaria","Alfonso Reyes","FCE");
-    Libro L4("En Busca Del Tiempo Perdido","Marcel Proust","Alianza");
-
-    tope = NULL;//Pila vacia
-
-    tope = new Nodo(L1, tope);    //Push a la pila, entra L1 primero
-    tope = new Nodo(L2, tope);    //Push a la pila, entra L2
-    tope = new Nodo(L3, tope);    //Push a la pila, entra L3
-    tope = new Nodo(L4, tope);   //Push a la pila, entra L4 al final
-
-
+public:
+    Pila(void);
+    ~Pila(void);
+    void push(int d);
+    int pop(void);
+    bool estaVacia(void);
+    void liberaPila(void);
+};
+Pila::Pila(void){
+    tope = NULL;
+}
+Pila::~Pila(void){
+    //cout<<"Destructor:"<<endl;
+    liberaPila();
+}
+void Pila::push(int d){
+    tope = new Nodo(d, tope);
+}
+int Pila::pop(void){
     Nodo* aux;
-    Libro d;
-
-    //Pop a la pila, sale L4 primero (ultimo en entrar)
+    int d;
     d = tope->retornaDato();
     aux = tope;
     tope = tope->retornaInferior();
     delete aux;
-    cout << d << endl;
+    return d;
+}
+bool Pila::estaVacia(void){
+    return tope==NULL;
+}
+void Pila::liberaPila(void){
+    while(!estaVacia())
+        cout<<pop()<<endl;
+}
 
-    //Pop a la pila, sale L3
-    d = tope->retornaDato();
-    aux = tope;
-    tope = tope->retornaInferior();
-    delete aux;
-    cout << d << endl;
+int main(void){
+    Pila P;
+    int op,d;
 
-    //Pop a la pila, sale L2
-    d = tope->retornaDato();
-    aux = tope;
-    tope = tope->retornaInferior();
-    delete aux;
-    cout << d << endl;
+    do{
+        system("cls");
+        cout<<"1. push"<<endl
+            <<"2. pop"<<endl
+            <<"3. elimina Pila"<<endl
+            <<"4. Salir"<<endl
+            <<"Cual es tu opcion? ";
+        cin>>op;
+        system("cls");
+        switch(op){
+            case 1:
+                cout<<"Ingresa dato ";cin>>d;
+                P.push(d);
+                break;
+            case 2:
+                if(P.estaVacia()){
+                    cout<<"La pila esta vacia... =("<<endl;
+                }
+                else{
+                    cout<<"Salio nodo con dato "<<P.pop()<<endl<<endl;
+                }
+                break;
+            case 3:
+                P.liberaPila();
+                break;
+            case 4:
+                cout<<"Adios! =)"<<endl<<endl;
+                break;
+            default :
+                cout<<"Opcion invalida...! =("<<endl<<endl;
+                break;
+        }
+        if(op!=4)
+            system("pause");
 
-    //Pop a la pila, sale L1 al final  (primero en entrar)
-    d = tope->retornaDato();
-    aux = tope;
-    tope = tope->retornaInferior();
-    delete aux;
-    cout << d << endl;
+    }while(op!=4);
 
     return 0;
 }
