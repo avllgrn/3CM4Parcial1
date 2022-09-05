@@ -4,29 +4,25 @@
 using namespace std;
 
 int main(void){
-    PilaInt A;
-    PilaInt B;
-    int d;
+    PilaInt P;
+    int n, b;
 
-    //1. Ingresar datos en Pila A
+    //1. Ingresar dato
+    cout << "Ingresa numero ";
+    cin >> n;
+    b = n;
+
+    //2. Convertir a binario n
     do{
-        cout<<"Ingresa numero ";
-        cin>>d;
-        if(d!=0)
-            A.push(d);
-    }while(d!=0);
-
-    //2. Pasar datos positivos de Pila A hacia Pila B
-    while(!A.estaVacia()){
-        d = A.pop();
-        if(d>0)
-            B.push(d);
-    }
+        P.push(b%2);//Ingresar a la Pila cada residuo
+        b = b/2;
+    }while(b>0);
 
     //3. Mostrar Pila B
-    cout<<endl<<endl<<"B"<<endl;
-    while(!B.estaVacia())
-        cout<<B.pop()<<endl;
+    cout<<endl<<n<<" = ";
+    while(!P.estaVacia())//Mostrar la pila, que guarda la conversion invertidamente
+        cout<<P.pop();
+    cout<<endl<<endl;
 
     return 0;
 }
