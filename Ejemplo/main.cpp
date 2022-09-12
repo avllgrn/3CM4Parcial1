@@ -1,28 +1,34 @@
 #include <iostream>
 #include <stdlib.h>
-#include "PilaInt.h"
+#include "PilaChar.h"
 using namespace std;
 
 int main(void){
-    PilaInt P;
-    int n, b;
+    PilaChar P;
+    string cadena;
+    int i, n;
 
-    //1. Ingresar dato
-    cout << "Ingresa numero ";
-    cin >> n;
-    b = n;
+    cout<<"Ingresa la expresion ";
+    getline(cin,cadena);
+    n = cadena.size();
 
-    //2. Convertir a binario n
-    do{
-        P.push(b%2);//Ingresar a la Pila cada residuo
-        b = b/2;
-    }while(b>0);
 
-    //3. Mostrar Pila B
-    cout<<endl<<n<<" = ";
-    while(!P.estaVacia())//Mostrar la pila, que guarda la conversion invertidamente
-        cout<<P.pop();
-    cout<<endl<<endl;
+    i=0;
+    while(i<n){
+        if(cadena.at(i)=='(')
+           P.push(')');
+        else if(cadena.at(i)==')'&&!P.estaVacia())
+            P.pop();
+        else if(cadena.at(i)==')'&&P.estaVacia())
+            break;
+        i++;
+    }
+
+    cout<<endl<<endl<<cadena<<endl<<endl;
+    if(!P.estaVacia() || i<n)
+        cout<<" NO es correcta"<<endl<<endl;
+    else
+        cout<<" ES correcta"<<endl<<endl;
 
     return 0;
 }
