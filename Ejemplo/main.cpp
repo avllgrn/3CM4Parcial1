@@ -3,22 +3,32 @@
 using namespace std;
 
 int main(void){
-    Pila P;
+    Pila A, B, Aux;
+    int temp;
 
-    cout<<"Inicio"<<endl<<endl;
+    A.push(5);
+    A.push(-1);
+    A.push(3);
+    A.push(9);
+    A.push(4);
 
-    P.push(5);
-    P.push(-1);
-    P.push(3);
-    P.push(9);
-    P.push(4);
+    //Pasar datos de A a Aux
+    while(!A.estaVacia())
+        Aux.push(A.pop());
 
+    //Pasar datos de Aux a A y B
+    while(!Aux.estaVacia()){
+        //Se almacena temporalmente cada dato
+        temp = Aux.pop();
+        //Se copia cada dato a A y a B
+        A.push(temp);
+        B.push(temp);
+    }
 
-    cout<<P.pop()<<endl;
-    cout<<P.pop()<<endl;
-    cout<<P.pop()<<endl;
-
-    cout<<"Final"<<endl<<endl;
+    cout<<"A"<<endl;
+    A.vaciaPila();cout<<endl<<endl;
+    cout<<"B"<<endl;
+    B.vaciaPila();cout<<endl<<endl;
 
     return 0;
 }
