@@ -1,34 +1,17 @@
 #include <iostream>
-#include "Pila.h"
+#include "Cola.h"
 using namespace std;
 
 int main(void){
-    Pila A, B, Aux;
-    int temp;
+    Cola C;
 
-    A.push(5);
-    A.push(-1);
-    A.push(3);
-    A.push(9);
-    A.push(4);
-
-    //Pasar datos de A a Aux
-    while(!A.estaVacia())
-        Aux.push(A.pop());
-
-    //Pasar datos de Aux a A y B
-    while(!Aux.estaVacia()){
-        //Se almacena temporalmente cada dato
-        temp = Aux.pop();
-        //Se copia cada dato a A y a B
-        A.push(temp);
-        B.push(temp);
-    }
-
-    cout<<"A"<<endl;
-    A.vaciaPila();cout<<endl<<endl;
-    cout<<"B"<<endl;
-    B.vaciaPila();cout<<endl<<endl;
+    cout<< "Inicio de main "<<endl<<endl;
+    C.push(1);
+    C.push(3);
+    C.push(5);
+    C.push(7);
+    C.push(9);
+    cout<< "Fin de main "<<endl<<endl;
 
     return 0;
 }
