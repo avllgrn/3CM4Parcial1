@@ -35,7 +35,8 @@ public:
     };
     void vaciaLista(void){
         while(!estaVacia())
-            cout<<eliminaAlInicio()<<endl;
+            //cout<<eliminaAlInicio()<<endl;
+            eliminaAlInicio();
     };
     void insertaAlFinal(int d){
         if(estaVacia()){
@@ -85,7 +86,6 @@ public:
         }
         return false;
     };
-
     void insertaAlInicio(int d){
         if(estaVacia()){
             ini = new Nodo(d,NULL);
@@ -148,7 +148,41 @@ public:
         }
     };
     void insertaOrdenadamente(int d){
-        //Tarea
+        if(estaVacia() || d <= ini->dat)
+            insertaAlInicio(d);
+        else if(d >= fin->dat)
+            insertaAlFinal(d);
+        else{
+            Nodo* aux1;
+            Nodo* aux2;
+            aux1 = ini;
+            aux2 = ini->sig;
+            while(d > aux2->dat){
+                aux1 = aux2;
+                aux2 = aux2->sig;
+            }
+            aux1->sig = new Nodo(d,aux2);
+        }
+    };
+    void copiaLista(ListaSimple& Original){
+        vaciaLista();
+        Nodo* aux;
+        aux = Original.ini;
+        while(aux != NULL){
+            insertaAlFinal(aux->dat);
+            aux = aux->sig;
+        }
+    };
+    void copiaOrdenadamente(ListaSimple& Original){
+        vaciaLista();
+        Nodo* aux;
+        aux = Original.ini;
+        while(aux != NULL){
+            insertaOrdenadamente(aux->dat);
+            aux = aux->sig;
+        }
     };
 };
+
+
 #endif // LISTASIMPLE_H
