@@ -25,12 +25,12 @@ public:
 };
 
 int main(void){
-    Nodo A, B, C, D;
+    Nodo A(5,NULL), B(3,&A), C(7,&B), D(-4,&C);
 
-    cout<<"D "; D.muestraTuEstado();
-    cout<<"C "; C.muestraTuEstado();
-    cout<<"B "; B.muestraTuEstado();
-    cout<<"A "; A.muestraTuEstado();
+    cout<<"&D = "<<&D<<" "; D.muestraTuEstado();
+    cout<<"&C = "<<&C<<" "; C.muestraTuEstado();
+    cout<<"&B = "<<&B<<" "; B.muestraTuEstado();
+    cout<<"&A = "<<&A<<" "; A.muestraTuEstado();
 
     return 0;
 }
