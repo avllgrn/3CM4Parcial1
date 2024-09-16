@@ -2,105 +2,94 @@
 #include <stdlib.h>
 using namespace std;
 
+class Punto{
+public:
+    double x;
+    double y;
+};
+
+class Complejo{
+public:
+    double real;
+    double imaginario;
+};
+
+class Fraccion{
+public:
+    int numerador;
+    int denominador;
+};
+
 int main(void){
+    Punto P;    //Se construye objeto tipo Punto
+    Complejo C; //Se construye objeto tipo Complejo
+    Fraccion F; //Se construye objeto tipo Fraccion
 
-    int varInt;             //Declaracion de variable
-    float varFloat;         //Declaracion de variable
-    char varChar;           //Declaracion de variable
-    long long varLongLong;  //Declaracion de variable
-    double varDouble;       //Declaracion de variable
-
-    cout << "varInt ocupa\t  "<< sizeof(varInt) << " bytes" << endl;        //Memoria reservada para variable
-    cout << "varFloat ocupa\t  "<< sizeof(varFloat) << " bytes" << endl;    //Memoria reservada para variable
-    cout << "varChar ocupa\t  "<< sizeof(varChar) << " bytes" << endl;      //Memoria reservada para variable
-    cout << "varLongLong ocupa "<< sizeof(varLongLong) << " bytes" << endl; //Memoria reservada para variable
-    cout << "varDouble ocupa\t  "<< sizeof(varDouble) << " bytes" << endl;  //Memoria reservada para variable
+    cout << "P ocupa\t  "<< sizeof(P) << " bytes" << endl;//Memoria reservada para objeto
+    cout << "C ocupa\t  "<< sizeof(C) << " bytes" << endl;//Memoria reservada para objeto
+    cout << "F ocupa\t  "<< sizeof(F) << " bytes" << endl;//Memoria reservada para objeto
     cout<<endl<<endl;
     system("pause");
     system("cls");
 
 
-    cout << "varInt\t\t= "<< varInt << endl;            //Contenido (dato basura) en la variable
-    cout << "varFloat\t= "<< varFloat << endl;          //Contenido (dato basura) en la variable
-    cout << "varChar\t\t= "<< varChar << endl;          //Contenido (dato basura) en la variable
-    cout << "varLongLong\t= "<< varLongLong << endl;    //Contenido (dato basura) en la variable
-    cout << "varDouble\t= "<< varDouble << endl;        //Contenido (dato basura) en la variable
+    cout << "P = ("<<P.x<<", "<<P.y<<")"<< endl;                //Se muestran los atributos del objeto (con datos basura)
+    cout<<endl<<endl;
+    cout << "C = "<<C.real<<" + "<<C.imaginario<<"i"<<endl;     //Se muestran los atributos del objeto (con datos basura)
+    cout<<endl<<endl;
+    cout << "F = "<< F.numerador<<" / "<<F.denominador<<endl;   //Se muestran los atributos del objeto (con datos basura)
+    cout<<endl<<endl;
+    system("pause");
+    cout<<endl<<endl;
+
+    P.x = 1.2;          //Asignacion de una dato a atributo de objeto
+    P.y = 3.4;          //Asignacion de una dato a atributo de objeto
+    C.real = 5.6;       //Asignacion de una dato a atributo de objeto
+    C.imaginario = 7.8; //Asignacion de una dato a atributo de objeto
+    F.numerador = 9;    //Asignacion de una dato a atributo de objeto
+    F.denominador = 10; //Asignacion de una dato a atributo de objeto
+
+    cout << "P = ("<<P.x<<", "<<P.y<<")"<< endl;                //Se muestran los atributos del objeto (ya no hay basura)
+    cout<<endl<<endl;
+    cout << "C = "<<C.real<<" + "<<C.imaginario<<"i"<<endl;     //Se muestran los atributos del objeto (ya no hay basura)
+    cout<<endl<<endl;
+    cout << "F = "<< F.numerador<<" / "<<F.denominador<<endl;   //Se muestran los atributos del objeto (ya no hay basura)
     cout<<endl<<endl;
     system("pause");
     system("cls");
 
-    varInt = 5;         //Asignacion de una dato a una variable
-    varFloat = 6.7;     //Asignacion de una dato a una variable
-    varChar = '@';      //Asignacion de una dato a una variable
-    varLongLong = 7;    //Asignacion de una dato a una variable
-    varDouble = 8.9;    //Asignacion de una dato a una variable
+    Punto* ptrPunto;        //Declaracion de apuntador a un objeto tipo Punto
+    Complejo* ptrComplejo;  //Declaracion de apuntador a un objeto tipo Complejo
+    Fraccion* ptrFraccion;  //Declaracion de apuntador a un objeto tipo Fraccion
 
-    cout << "varInt\t\t= "<< varInt << endl;            //Contenido (dato) en la variable
-    cout << "varFloat\t= "<< varFloat << endl;          //Contenido (dato) en la variable
-    cout << "varChar\t\t= "<< varChar << endl;          //Contenido (dato) en la variable
-    cout << "varLongLong\t= "<< varLongLong << endl;    //Contenido (dato) en la variable
-    cout << "varDouble\t= "<< varDouble << endl;        //Contenido (dato) en la variable
+    cout << "ptrPunto ocupa    "<< sizeof(ptrPunto) << " bytes" << endl;    //Memoria reservada para apuntador a un objeto tipo Punto
+    cout << "ptrComplejo ocupa "<< sizeof(ptrComplejo) << " bytes" << endl; //Memoria reservada para apuntador a un objeto tipo Complejo
+    cout << "ptrFraccion ocupa "<< sizeof(ptrFraccion) << " bytes" << endl; //Memoria reservada para apuntador a un objeto tipo Fraccion
+    cout<<endl<<endl;
+
+    cout << "ptrPunto    = "<< ptrPunto << endl;    //Contenido (direccion basura) en el apuntador a un objeto tipo Punto
+    cout << "ptrComplejo = "<< ptrComplejo << endl; //Contenido (direccion basura) en el apuntador a un objeto tipo Complejo
+    cout << "ptrFraccion = "<< ptrFraccion << endl; //Contenido (direccion basura) en el apuntador a un objeto tipo Fraccion
     cout<<endl<<endl;
     system("pause");
     system("cls");
 
+    ptrPunto = &P;      //Asignacion de la direccion de un objeto tipo Punto a un apuntador Punto*
+    ptrComplejo = &C;   //Asignacion de la direccion de un objeto tipo Complejoa un apuntador Complejo*
+    ptrFraccion = &F;   //Asignacion de la direccion de un objeto tipo Fracciona un apuntador Fraccion*
 
-    int* ptrInt;            //Declaracion de apuntador a un int
-    float* ptrFloat;        //Declaracion de apuntador a un float
-    char* ptrChar;          //Declaracion de apuntador a un char
-    long long* ptrLongLong; //Declaracion de apuntador a un long long
-    double* ptrDouble;      //Declaracion de apuntador a un double
-
-    cout << "ptrInt ocupa\t  "<< sizeof(ptrInt) << " bytes" << endl;                //Memoria reservada para apuntador
-    cout << "ptrFloat ocupa\t  "<< sizeof(ptrFloat) << " bytes" << endl;            //Memoria reservada para apuntador
-    cout << "ptrChar ocupa\t  "<< sizeof(ptrChar) << " bytes" << endl;              //Memoria reservada para apuntador
-    cout << "ptrLongLong ocupa "<< sizeof(ptrLongLong) << " bytes" << endl;         //Memoria reservada para apuntador
-    cout << "ptrDouble ocupa\t  "<< sizeof(ptrDouble) << " bytes" << endl << endl;  //Memoria reservada para apuntador
-
-    cout << "ptrInt\t\t= "<< ptrInt << endl;            //Contenido (direccion basura) en el apuntador
-    cout << "ptrFloat\t= "<< ptrFloat << endl;          //Contenido (direccion basura) en el apuntador
-    cout << "ptrChar\t\t= "<< (void*)ptrChar << endl;   //Contenido (direccion basura) en el apuntador
-    cout << "ptrLongLong\t= "<< ptrLongLong << endl;    //Contenido (direccion basura) en el apuntador
-    cout << "ptrDouble\t= "<< ptrDouble << endl;        //Contenido (direccion basura) en el apuntador
+    cout << "ptrPunto    = "<< ptrPunto << endl;    //Contenido (ya no hay basura) en el apuntador a un objeto tipo Punto
+    cout << "ptrComplejo = "<< ptrComplejo << endl; //Contenido (ya no hay basura) en el apuntador a un objeto tipo Complejo
+    cout << "ptrFraccion = "<< ptrFraccion << endl; //Contenido (ya no hay basura) en el apuntador a un objeto tipo Fraccion
     cout<<endl<<endl;
     system("pause");
-    system("cls");
+    cout<<endl<<endl;
 
-    ptrInt = &varInt;           //Asignacion de una direccion a un apuntador
-    ptrFloat = &varFloat;       //Asignacion de una direccion a un apuntador
-    ptrChar = &varChar;         //Asignacion de una direccion a un apuntador
-    ptrLongLong = &varLongLong; //Asignacion de una direccion a un apuntador
-    ptrDouble = &varDouble;     //Asignacion de una direccion a un apuntador
-
-    cout << "varInt =\t"<< varInt << endl;          //Contenido (dato) de la variable
-    cout << "&varInt =\t"<< &varInt << endl;        //Direccion de la variable
-    cout << "ptrInt =\t"<< ptrInt << endl;          //Contenido (direccion) en el apuntador
-    cout << "&ptrInt =\t"<< &ptrInt << endl;        //Direccion del apuntador
-    cout << "*ptrInt =\t"<< *ptrInt << endl << endl;//Contenido en la variable a la que se apunta
-
-    cout << "varFloat =\t"<< varFloat << endl;          //Contenido (dato) de la variable
-    cout << "&varFloat =\t"<< &varFloat << endl;        //Direccion de la variable
-    cout << "ptrFloat =\t"<< ptrFloat << endl;          //Contenido (direccion) en el apuntador
-    cout << "&ptrFloat =\t"<< &ptrFloat << endl;        //Direccion del apuntador
-    cout << "*ptrFloat =\t"<< *ptrFloat << endl << endl;//Contenido en la variable a la que se apunta
-
-    cout << "varChar =\t"<< varChar << endl;          //Contenido (dato) de la variable
-    cout << "&varChar =\t"<< (void*)&varChar << endl; //Direccion de la variable
-    cout << "ptrChar =\t"<< (void*)ptrChar << endl;   //Contenido (direccion) en el apuntador
-    cout << "&ptrChar =\t"<< (void*)&ptrChar << endl; //Direccion del apuntador
-    cout << "*ptrChar =\t"<< *ptrChar << endl << endl;//Contenido en la variable a la que se apunta
-
-    cout << "varLongLong =\t"<< varLongLong << endl;          //Contenido (dato) de la variable
-    cout << "&varLongLong =\t"<< &varLongLong << endl;        //Direccion de la variable
-    cout << "ptrLongLong =\t"<< ptrLongLong << endl;          //Contenido (direccion) en el apuntador
-    cout << "&ptrLongLong =\t"<< &ptrLongLong << endl;        //Direccion del apuntador
-    cout << "*ptrLongLong =\t"<< *ptrLongLong << endl << endl;//Contenido en la variable a la que se apunta
-
-    cout << "varDouble =\t"<< varDouble << endl;          //Contenido (dato) de la variable
-    cout << "&varDouble =\t"<< &varDouble << endl;        //Direccion de la variable
-    cout << "ptrDouble =\t"<< ptrDouble << endl;          //Contenido (direccion) en el apuntador
-    cout << "&ptrDouble =\t"<< &ptrDouble << endl;        //Direccion del apuntador
-    cout << "*ptrDouble =\t"<< *ptrDouble << endl;        //Contenido en la variable a la que se apunta
+    cout << "P = ("<<ptrPunto->x<<", "<<ptrPunto->y<<")"<< endl;                //Se muestran los atributos del objeto, usando un apuntador Punto*
+    cout<<endl<<endl;
+    cout << "C = "<<ptrComplejo->real<<" + "<<ptrComplejo->imaginario<<"i"<<endl;     //Se muestran los atributos del objeto, usando un apuntador Complejo*
+    cout<<endl<<endl;
+    cout << "F = "<< ptrFraccion->numerador<<" / "<<ptrFraccion->denominador<<endl;   //Se muestran los atributos del objeto, usando un apuntador Fraccion*
     cout<<endl<<endl;
 
     return 0;
