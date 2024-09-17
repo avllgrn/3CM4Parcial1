@@ -56,53 +56,16 @@ public:
 };
 
 int main(void){
-    Pila P;
-    int op,d;
+    int n, x;
 
-    do{
-        system("cls");
-        cout<<"1. push"<<endl
-            <<"2. pop"<<endl
-            <<"3. libera Pila"<<endl
-            <<"4. Salir"<<endl
-            <<"Cual es tu opcion? ";
-        cin>>op;
-        system("cls");
-        switch(op){
-            case 1:
-                cout<<"Ingresa dato ";cin>>d;
-                P.push(d);
-                cout<<endl<<endl<<"Dato insertado en Pila..."<<endl<<endl;
-                break;
-            case 2:
-                if(P.estaVacia()){
-                    cout<<"La pila esta vacia -.-"<<endl<<endl;
-                }
-                else{
-                    d = P.pop();
-                    cout<<"Salio nodo con dato "<<d<<endl<<endl;
-                }
-                break;
-            case 3:
-                if(P.estaVacia()){
-                    cout<<"La pila ya esta vacia -.-"<<endl<<endl;
-                }
-                else{
-                    P.liberaPila();
-                    cout<<"La pila ha sido liberada =)"<<endl<<endl;
-                }
-                break;
-            case 4:
-                cout<<"Adios! =)"<<endl<<endl;
-                break;
-            default :
-                cout<<"Opcion invalida! o.O"<<endl<<endl;
-                break;
-        }
-        if(op!=4)
-            system("pause");
+    cout << "Ingresa n ";
+    cin >> n;
+    x = n;
 
-    }while(op!=4);
+    while(x>0){
+        cout << (x%2);  //Se muestra cada residuo
+        x = x/2;        //Se almacena cada nuevo cociente
+    }
 
     return 0;
 }
