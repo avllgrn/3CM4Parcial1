@@ -56,16 +56,25 @@ public:
 };
 
 int main(void){
+    Pila P;
     int n, x;
 
     cout << "Ingresa n ";
     cin >> n;
     x = n;
 
+    //Se convierte el numero a binario (invertidamente)
     while(x>0){
-        cout << (x%2);  //Se muestra cada residuo
+        P.push(x%2);    //Se apila cada residuo
         x = x/2;        //Se almacena cada nuevo cociente
     }
+
+    cout << n << " (DEC) = ";
+    //Se muestra cada valor eliminado de la pila (conversion correcta)
+    while(!P.estaVacia()){
+        cout << P.pop();
+    }
+    cout << " (BIN)";
 
     return 0;
 }
