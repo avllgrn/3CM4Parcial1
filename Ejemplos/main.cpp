@@ -2,17 +2,17 @@
 #include <stdlib.h>
 using namespace std;
 
-class Pila{
+class PilaChar{
 private:
     class Nodo{//La clase Nodo es de uso exclusivo de la clase Pila
     public:
-        int dato;
+        char dato;
         Nodo* inferior;
         Nodo(void){
             dato = 0;
             inferior = NULL;
         };
-        Nodo(int d, Nodo* i){
+        Nodo(char d, Nodo* i){
             dato = d;
             inferior = i;
         };
@@ -27,17 +27,17 @@ private:
     };
     Nodo* tope;
 public:
-    Pila(void){
+    PilaChar(void){
         tope = NULL;
     };
-    ~Pila(void){
+    ~PilaChar(void){
         liberaPila();
     };
-    void push(int d){
+    void push(char d){
         tope = new Nodo(d, tope);
     };
-    int pop(void){
-        int d;
+    char pop(void){
+        char d;
         Nodo* aux;
         d = tope->dato;
         aux = tope;
@@ -56,25 +56,25 @@ public:
 };
 
 int main(void){
-    Pila P;
-    int n, x;
+    string Cadena;
+    int i,tam;
 
-    cout << "Ingresa n ";
-    cin >> n;
-    x = n;
+    cout<<"Ingresa una cadena de caracteres ";
+    getline(cin, Cadena);
+    tam = Cadena.size();
 
-    //Se convierte el numero a binario (invertidamente)
-    while(x>0){
-        P.push(x%2);    //Se apila cada residuo
-        x = x/2;        //Se almacena cada nuevo cociente
-    }
+    cout<<endl<<endl;
+    cout<<"Cadena izquierda a derecha"<<endl;
+    for(i=0; i<tam; i++)
+        cout<<Cadena.at(i)<<endl;
 
-    cout << n << " (DEC) = ";
-    //Se muestra cada valor eliminado de la pila (conversion correcta)
-    while(!P.estaVacia()){
-        cout << P.pop();
-    }
-    cout << " (BIN)";
+    PilaChar P;
+    for(i=0; i<tam; i++)
+        P.push(Cadena.at(i));
+
+    cout<<endl<<endl;
+    cout<<"Cadena de derecha a izquierda"<<endl;
+    P.liberaPila();
 
     return 0;
 }
