@@ -55,26 +55,47 @@ public:
     };
 };
 
-int main(void){
-    string Cadena;
-    int i,tam;
+bool esNumero(char c);
+bool esMayuscula(char c);
+bool esMinuscula(char c);
+bool esLetra(char c);
+bool esEspecial(char c);
 
+int main(void){
+    string Cadena, Trabajada;
+    char c;
+    int i,tam;
     cout<<"Ingresa una cadena de caracteres ";
     getline(cin, Cadena);
     tam = Cadena.size();
 
-    cout<<endl<<endl;
-    cout<<"Cadena izquierda a derecha"<<endl;
-    for(i=0; i<tam; i++)
-        cout<<Cadena.at(i)<<endl;
-
     PilaChar P;
-    for(i=0; i<tam; i++)
-        P.push(Cadena.at(i));
-
-    cout<<endl<<endl;
-    cout<<"Cadena de derecha a izquierda"<<endl;
+    for(i=0; i<tam; i++){
+        if(!esEspecial(Cadena.at(i))){
+            c = toupper(Cadena.at(i));
+            P.push(c);
+            Trabajada.push_back(c);
+        }
+    }
+    cout<<endl
+        <<Cadena<<endl<<endl
+        <<Trabajada<<endl<<endl;
     P.liberaPila();
-
     return 0;
+}
+
+bool esNumero(char c){
+    return 48<=c && c <=57;
+}
+bool esMayuscula(char c){
+    return 65<=c && c <=90;
+}
+bool esMinuscula(char c){
+    return 97<=c && c <=122;
+}
+bool esLetra(char c){
+    return esMayuscula(c) || esMinuscula(c);
+}
+bool esEspecial(char c){
+    return !esLetra(c) && !esNumero(c);
 }
